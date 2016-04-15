@@ -12,8 +12,4 @@ public class Index {
         return "Hello our great team :)";
     }
 
-    public String getTest() {
-    return "testing...";
-    }
-
 }
