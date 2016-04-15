@@ -8,10 +8,12 @@ package com.energizeglobal.smsys.pages;
 public class Index {
 
 
-
     public String getHello() {
         return "Hello our great team :)";
     }
 
+    public String getTest() {
+    return "testing...";
+    }
 
 }
