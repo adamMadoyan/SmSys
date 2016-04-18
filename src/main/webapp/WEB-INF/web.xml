@@ -11,7 +11,30 @@
         <param-value>com.energizeglobal.smsys</param-value>
     </context-param>
 
-    <!-- Filter configuration -->
+    <!-- RequestFilter configuration -->
+
+    <filter>
+        <filter-name>authorization</filter-name>
+        <filter-class>com.energizeglobal.smsys.filter.AuthorizationFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>authorization</filter-name>
+        <url-pattern>/api/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>requestFilter</filter-name>
+        <filter-class>com.energizeglobal.smsys.filter.RequestFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>requestFilter</filter-name>
+        <url-pattern>/login</url-pattern>
+        <url-pattern>/registration</url-pattern>
+    </filter-mapping>
+
+
     <filter>
         <filter-name>app</filter-name>
         <filter-class>org.apache.tapestry5.TapestryFilter</filter-class>

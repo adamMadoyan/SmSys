@@ -11,6 +11,6 @@
         <!--<property name="hbm2ddl.auto">update</property>-->
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.format_sql">true</property>
-        <!--<mapping class="com.energizeglobal.smsys.entities.User"/>-->
+        <mapping class="com.energizeglobal.smsys.entities.User"/>
     </session-factory>
 </hibernate-configuration>

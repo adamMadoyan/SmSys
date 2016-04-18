@@ -1,0 +1,36 @@
+package com.energizeglobal.smsys.pages;
+
+import com.energizeglobal.smsys.entities.User;
+import com.energizeglobal.smsys.manager.IUserManager;
+import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.annotations.SessionState;
+import org.apache.tapestry5.services.Request;
+
+import javax.inject.Inject;
+
+/**
+ * Description for class.
+ *
+ * @author <a href="mailto:adamm@energizeglobal.com">Adam Madoyan</a>
+ */
+public class BaseAction {
+
+    @Inject
+    protected Request request;
+
+    @Property
+    @SessionState(create = false)
+    protected User user;
+
+    @Inject
+    protected IUserManager userManager;
+
+//    protected void putUserIntoSession(User user) {
+//        request.getSession(true).setAttribute(CURRENT_USER, user);
+//    }
+//    protected User getUserFromSession() {
+//        return  (User) request.getSession(true).getAttribute(CURRENT_USER);
+//    }
+
+
+}

@@ -1,5 +1,9 @@
 package com.energizeglobal.smsys.services;
 
+import com.energizeglobal.smsys.manager.IUserManager;
+import com.energizeglobal.smsys.manager.impl.UserManager;
+import com.energizeglobal.smsys.repository.IUserRepository;
+import com.energizeglobal.smsys.repository.impl.UserRepository;
 import org.apache.tapestry5.SymbolConstants;
 import org.apache.tapestry5.ioc.MappedConfiguration;
 import org.apache.tapestry5.ioc.OrderedConfiguration;
@@ -15,8 +19,8 @@ import java.io.IOException;
 
 public class AppModule {
     public static void bind(ServiceBinder binder) {
-        // binder.bind(MyServiceInterface.class, MyServiceImpl.class);
-
+        binder.bind(IUserManager.class, UserManager.class);
+        binder.bind(IUserRepository.class, UserRepository.class);
     }
 
     public static void contributeApplicationDefaults(

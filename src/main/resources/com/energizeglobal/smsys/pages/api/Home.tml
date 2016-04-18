@@ -1,0 +1,14 @@
+<html t:type="layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd">
+
+<h1>Home</h1>
+<h3>${user.firstName}</h3>
+<h3>${user.lastName}</h3>
+<h3>${user.email}</h3>
+<h3>${user.gender}</h3>
+<h3>${user.dob}</h3>
+
+
+<a t:type="actionlink" t:id="invalidate">Log Out</a>
+
+
+</html>

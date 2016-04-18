@@ -1,5 +1,8 @@
 package com.energizeglobal.smsys.pages;
 
+import org.apache.tapestry5.annotations.Persist;
+import org.apache.tapestry5.annotations.Property;
+
 /**
  * Description for class.
  *
@@ -8,8 +11,19 @@ package com.energizeglobal.smsys.pages;
 public class Index {
 
 
+    Object onActivate() {
+        return Login.class;
+    }
+
+    @Property @Persist
+    private int count;
+
     public String getHello() {
         return "Hello our great team :)";
     }
 
+
+    void onActionFromTest() {
+        count++;
+    }
 }
