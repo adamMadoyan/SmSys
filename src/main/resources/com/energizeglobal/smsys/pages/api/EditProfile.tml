@@ -1,0 +1,32 @@
+<html t:type="layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
+
+
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+        <h1>Edit Profile</h1>
+        <form t:type="beaneditform" t:id="editForm" object="user" exclude="id, status, password" add="avatar" submitLabel="Create">
+            <p:avatar>
+                <t:label for="avatar"/>
+                <input t:type="upload" t:id="avatar" value="avatar"/>
+            </p:avatar>
+        </form>
+
+        <!--<form t:type="form" clientValidation="none">-->
+            <!--<t:errors/>-->
+            <!--<div>-->
+                <!--<label t:type="label" for="file"/>-->
+                <!--<input t:type="upload" t:id="file" validate="required"/>-->
+            <!--</div>-->
+            <!--<div>-->
+                <!--<input type="submit" value="Upload" />-->
+            <!--</div>-->
+        <!--</form>-->
+
+    </div>
+</div>
+
+
+<a t:type="pagelink" page="api/home">Home</a>
+
+
+</html>

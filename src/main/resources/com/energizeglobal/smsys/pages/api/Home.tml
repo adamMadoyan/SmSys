@@ -1,5 +1,9 @@
 <html t:type="layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd">
 
+
+<!--<img src="/smsys/download" t:id="${test}" class="img-circle"  />-->
+<img src="${test}" class="img-circle"  />
+
 <h1>Home</h1>
 <h3>${user.firstName}</h3>
 <h3>${user.lastName}</h3>
@@ -9,6 +13,7 @@
 
 
 <a t:type="actionlink" t:id="invalidate">Log Out</a>
+<a href="/smsys/download">Download</a>
 
 
 </html>

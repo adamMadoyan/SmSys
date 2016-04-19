@@ -8,11 +8,15 @@ import org.apache.tapestry5.SymbolConstants;
 import org.apache.tapestry5.ioc.MappedConfiguration;
 import org.apache.tapestry5.ioc.OrderedConfiguration;
 import org.apache.tapestry5.ioc.ServiceBinder;
+import org.apache.tapestry5.ioc.annotations.Contribute;
 import org.apache.tapestry5.ioc.annotations.Local;
+import org.apache.tapestry5.ioc.services.ApplicationDefaults;
+import org.apache.tapestry5.ioc.services.SymbolProvider;
 import org.apache.tapestry5.services.Request;
 import org.apache.tapestry5.services.RequestFilter;
 import org.apache.tapestry5.services.RequestHandler;
 import org.apache.tapestry5.services.Response;
+import org.apache.tapestry5.upload.services.UploadSymbols;
 import org.slf4j.Logger;
 
 import java.io.IOException;
@@ -97,4 +101,17 @@ public class AppModule {
 
         configuration.add("Timing", filter);
     }
+
+    @Contribute(SymbolProvider.class)
+    @ApplicationDefaults
+    public static void configureApplication(
+            MappedConfiguration<String, String> configuration) {
+        configuration.add(UploadSymbols.REPOSITORY_THRESHOLD,
+                "5120");
+        configuration.add(UploadSymbols.REPOSITORY_LOCATION,
+                System.getProperty("java.io.tmpdir"));
+        configuration.add(UploadSymbols.REQUESTSIZE_MAX, "-1");
+        configuration.add(UploadSymbols.FILESIZE_MAX, "1048576");
+    }
+
 }

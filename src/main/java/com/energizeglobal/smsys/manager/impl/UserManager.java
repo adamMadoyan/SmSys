@@ -30,6 +30,15 @@ public class UserManager implements IUserManager {
     }
 
     @Override
+    public void edit(User user) throws DatabaseException {
+        try {
+            userRepository.edit(user);
+        } catch (RuntimeException e) {
+            throw new DatabaseException(e);
+        }
+    }
+
+    @Override
     public User findById(Long id) throws DatabaseException {
         try {
             return userRepository.findById(id);

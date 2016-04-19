@@ -14,6 +14,8 @@ public interface IUserManager {
 
     void add(User user) throws DatabaseException;
 
+    void edit(User user)  throws DatabaseException;
+
     User findById(Long id)throws DatabaseException;
 
     User findByEmailAndPassword(String email, String password) throws EntityNotFoundException, DatabaseException;

@@ -1,5 +1,6 @@
 package com.energizeglobal.smsys.entities;
 
+import com.energizeglobal.smsys.entities.converter.UserAvatarConverter;
 import com.energizeglobal.smsys.entities.converter.UserStatusConverter;
 import com.energizeglobal.smsys.entities.lcp.Gender;
 import com.energizeglobal.smsys.entities.lcp.UserStatus;
@@ -11,6 +12,7 @@ import org.apache.tapestry5.beaneditor.Validate;
 import org.apache.tapestry5.ioc.annotations.Inject;
 
 import javax.persistence.*;
+import java.io.File;
 import java.util.Date;
 
 /**
@@ -58,6 +60,10 @@ public class User {
     @Column(name = "gender")
     @Enumerated(value = EnumType.STRING)
     private Gender gender;
+
+    @Convert(converter = UserAvatarConverter.class)
+    @Column(name = "avatar")
+    private File avatar;
 
     @Validate(value = "required, minLength=4")
     @DataType("password")
@@ -139,6 +145,14 @@ public class User {
 
     public void setStatus(UserStatus status) {
         this.status = status;
+    }
+
+    public File getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(File avatar) {
+        this.avatar = avatar;
     }
 
     public String getPassword() {

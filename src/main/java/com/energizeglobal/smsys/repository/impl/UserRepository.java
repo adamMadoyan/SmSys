@@ -28,6 +28,11 @@ public class UserRepository implements IUserRepository {
     }
 
     @Override
+    public void edit(User user) {
+        session.merge(user);
+    }
+
+    @Override
     public User findById(Long id) {
         return null;
     }
