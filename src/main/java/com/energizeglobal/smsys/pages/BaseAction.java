@@ -4,6 +4,7 @@ import com.energizeglobal.smsys.entities.User;
 import com.energizeglobal.smsys.manager.IUserManager;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SessionState;
+import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.services.Request;
 
 import javax.inject.Inject;
@@ -17,6 +18,9 @@ public class BaseAction {
 
     @Inject
     protected Request request;
+
+    @org.apache.tapestry5.ioc.annotations.Inject
+    protected Messages messages;
 
     @Property
     @SessionState(create = false)

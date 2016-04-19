@@ -7,8 +7,6 @@
     <groupId>com.energizeglobal</groupId>
     <artifactId>smsys</artifactId>
     <version>1.0-SNAPSHOT</version>
-
-
     <packaging>war</packaging>
 
     <properties>
@@ -16,7 +14,6 @@
         <servlet-api-release-version>2.5</servlet-api-release-version>
         <testng-release-version>6.8.21</testng-release-version>
         <slf4j-release-version>1.7.19</slf4j-release-version>
-
     </properties>
 
 
@@ -34,6 +31,12 @@
         <dependency>
             <groupId>org.apache.tapestry</groupId>
             <artifactId>tapestry-webresources</artifactId>
+            <version>${tapestry-release-version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.tapestry</groupId>
+            <artifactId>tapestry-upload</artifactId>
             <version>${tapestry-release-version}</version>
         </dependency>
 

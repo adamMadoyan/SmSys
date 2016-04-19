@@ -8,9 +8,11 @@ import org.apache.tapestry5.beaneditor.Validate;
 import org.apache.tapestry5.corelib.components.BeanEditForm;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 
+import java.io.File;
 import java.util.Date;
 
 import static com.energizeglobal.smsys.entities.lcp.UserStatus.INACTIVE;
+import static com.energizeglobal.smsys.entities.lcp.UserType.USER;
 
 /**
  * Description for class.
@@ -26,7 +28,6 @@ public class Registration extends BaseAction {
     @InjectComponent
     private BeanEditForm register;
 
-
     void onValidateFromRegister() {
         if (!user.getPassword().equals(confirmPassword)) {
             register.recordError("Password and confirm password are not equal!");
@@ -40,7 +41,12 @@ public class Registration extends BaseAction {
     @CommitAfter
     Object onSuccess() {
         try {
+            user.setAvatar(new File(messages.get("application.image.path") + "default.jpg"));
             user.setStatus(INACTIVE);
+            user.setUserType(USER);
+            if (true) {
+                return this;
+            }
             userManager.add(user);
             return Home.class;
         } catch (DatabaseException e) {
