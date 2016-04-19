@@ -1,7 +1,11 @@
 <html t:type="layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd">
 
-<form t:type="beaneditform" t:id="login" object="user" include="email, password" submitLabel="Log In"/>
+<div class="row">
+    <div class="col-md-3 col-md-offset-4">
+        <form t:type="beaneditform" t:id="login" object="user" include="email, password" submitLabel="Log In"/>
 
-<a t:type="actionlink" t:id="signUp" class="btn btn-primary">Sign Up</a>
+        <a t:type="actionlink" t:id="signUp" class="btn btn-primary">Sign Up</a>
+    </div>
+</div>
 
 </html>

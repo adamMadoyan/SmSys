@@ -1,6 +1,10 @@
 package com.energizeglobal.smsys.entities;
 
+import com.energizeglobal.smsys.entities.converter.UserStatusConverter;
 import com.energizeglobal.smsys.entities.lcp.Gender;
+import com.energizeglobal.smsys.entities.lcp.UserStatus;
+import com.energizeglobal.smsys.entities.lcp.UserType;
+import com.energizeglobal.smsys.entities.converter.UserTypeConverter;
 import org.apache.tapestry5.beaneditor.DataType;
 import org.apache.tapestry5.beaneditor.NonVisual;
 import org.apache.tapestry5.beaneditor.Validate;
@@ -33,11 +37,22 @@ public class User {
     private String lastName;
 
     @Validate(value = "required, email")
-    @Column(name = "email")
+    @Column(name = "email", unique = true)
     private String email;
 
+    @Validate(value = "required")
     @Column(name = "dob")
     private Date dob;
+
+    @Validate(value = "required")
+    @Convert(converter = UserTypeConverter.class)
+    @Column(name = "user_type")
+    private UserType userType;
+
+    @Validate(value = "required")
+    @Convert(converter = UserStatusConverter.class)
+    @Column(name = "status")
+    private UserStatus status;
 
     @Validate(value = "required")
     @Column(name = "gender")
@@ -108,6 +123,22 @@ public class User {
 
     public void setGender(Gender gender) {
         this.gender = gender;
+    }
+
+    public UserType getUserType() {
+        return userType;
+    }
+
+    public void setUserType(UserType userType) {
+        this.userType = userType;
+    }
+
+    public UserStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(UserStatus status) {
+        this.status = status;
     }
 
     public String getPassword() {

@@ -1,25 +1,15 @@
 <html t:type="layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
 
-<head>
-    <style>
-        #main {
-            width: 600px;
-            margin: 0 auto;
-            border: 2px solid darkgray;
-        }
-
-    </style>
-</head>
-
-<div id="main">
-    <form t:type="beaneditform" t:id="register" object="user" exclude="id" add="confirmPassword"  submitLabel="Create">
-        <p:confirmPassword>
-            <t:label for="confirmPassword"/>
-            <input t:type="passwordfield" t:id="confirmPassword" value="confirmPassword"/>
-        </p:confirmPassword>
-    </form>
-    <input t:type="pagelink" page="login" class="btn btn-primary">Log In</input>
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+        <form t:type="beaneditform" t:id="register" object="user" exclude="id, status" add="confirmPassword" submitLabel="Create">
+            <p:confirmPassword>
+                <t:label for="confirmPassword"/>
+                <input t:type="passwordfield" t:id="confirmPassword" value="confirmPassword"/>
+            </p:confirmPassword>
+        </form>
+        <input t:type="pagelink" page="login" class="btn btn-primary">Log In</input>
+    </div>
 </div>
-
 
 </html>

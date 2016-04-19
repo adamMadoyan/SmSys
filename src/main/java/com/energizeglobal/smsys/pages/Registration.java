@@ -1,16 +1,16 @@
 package com.energizeglobal.smsys.pages;
 
-import com.energizeglobal.smsys.entities.User;
 import com.energizeglobal.smsys.exception.DatabaseException;
 import com.energizeglobal.smsys.pages.api.Home;
 import org.apache.tapestry5.annotations.InjectComponent;
 import org.apache.tapestry5.annotations.Property;
-import org.apache.tapestry5.annotations.SessionState;
 import org.apache.tapestry5.beaneditor.Validate;
 import org.apache.tapestry5.corelib.components.BeanEditForm;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 
 import java.util.Date;
+
+import static com.energizeglobal.smsys.entities.lcp.UserStatus.INACTIVE;
 
 /**
  * Description for class.
@@ -34,13 +34,13 @@ public class Registration extends BaseAction {
         }
         if (user.getDob().after(new Date())) {
             register.recordError("Incorrect date of birth!");
-            return;
         }
     }
 
     @CommitAfter
     Object onSuccess() {
         try {
+            user.setStatus(INACTIVE);
             userManager.add(user);
             return Home.class;
         } catch (DatabaseException e) {
