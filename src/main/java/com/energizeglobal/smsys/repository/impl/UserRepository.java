@@ -55,5 +55,20 @@ public class UserRepository implements IUserRepository {
         throw new EntityNotFoundException("User not found");
     }
 
+    @Override
+    public List<User> getAllUser() {
+        List list = null;
+        try {
+            Query query = session.createQuery("FROM User");
+            list = query.list();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if(session!=null){
+                session.close();
+            }
+        }
+        return list;
+    }
 
 }

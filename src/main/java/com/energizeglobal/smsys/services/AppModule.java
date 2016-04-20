@@ -5,6 +5,7 @@ import com.energizeglobal.smsys.manager.impl.UserManager;
 import com.energizeglobal.smsys.repository.IUserRepository;
 import com.energizeglobal.smsys.repository.impl.UserRepository;
 import org.apache.tapestry5.SymbolConstants;
+import org.apache.tapestry5.ioc.Configuration;
 import org.apache.tapestry5.ioc.MappedConfiguration;
 import org.apache.tapestry5.ioc.OrderedConfiguration;
 import org.apache.tapestry5.ioc.ServiceBinder;
@@ -112,6 +113,14 @@ public class AppModule {
                 System.getProperty("java.io.tmpdir"));
         configuration.add(UploadSymbols.REQUESTSIZE_MAX, "-1");
         configuration.add(UploadSymbols.FILESIZE_MAX, "1048576");
+    }
+
+    public static void contributeIgnoredPathsFilter(Configuration<String> configuration)
+    {
+//        configuration.add("/dwr/.*");
+//        configuration.add("/dwr/*");
+//        configuration.add("dwr/*");
+//        configuration.add("dwr*");
     }
 
 }

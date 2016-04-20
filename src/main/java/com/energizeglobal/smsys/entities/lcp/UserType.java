@@ -7,8 +7,8 @@ package com.energizeglobal.smsys.entities.lcp;
  */
 public enum UserType {
 
-    ADMIN(1, "Adminstrator"),
-    USER(2, "USER");
+    ADMIN(1, "Administrator"),
+    USER(2, "User");
 
     UserType(int id, String type) {
         this.id = id;

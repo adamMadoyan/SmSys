@@ -14,16 +14,4 @@ public class Index {
     Object onActivate() {
         return Login.class;
     }
-
-    @Property @Persist
-    private int count;
-
-    public String getHello() {
-        return "Hello our great team :)";
-    }
-
-
-    void onActionFromTest() {
-        count++;
-    }
 }

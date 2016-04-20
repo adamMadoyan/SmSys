@@ -9,6 +9,7 @@ import org.hibernate.HibernateException;
 
 import javax.inject.Inject;
 import javax.persistence.EntityNotFoundException;
+import java.util.List;
 
 /**
  * Description for class.
@@ -58,4 +59,8 @@ public class UserManager implements IUserManager {
         }
     }
 
+    @Override
+    public List<User> getAllUser() {
+        return userRepository.getAllUser();
+    }
 }

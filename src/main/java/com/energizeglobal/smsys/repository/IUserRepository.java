@@ -4,6 +4,8 @@ package com.energizeglobal.smsys.repository;
 import com.energizeglobal.smsys.entities.User;
 import com.energizeglobal.smsys.exception.DatabaseException;
 
+import java.util.List;
+
 /**
  * Description for class.
  *
@@ -18,5 +20,7 @@ public interface IUserRepository {
     User findById(Long id);
 
     User findByEmailAndPassword(String email, String password);
+
+    public List<User> getAllUser();
 
 }

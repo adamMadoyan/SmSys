@@ -14,6 +14,7 @@ import org.apache.tapestry5.ioc.annotations.Inject;
 import javax.persistence.*;
 import java.io.File;
 import java.util.Date;
+import java.util.Set;
 
 /**
  * Description for class.
@@ -28,47 +29,51 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @NonVisual
+    @Column(name = "id", columnDefinition = "int(11)", nullable = false)
     private Long id;
 
     @Validate(value = "required, minLength=3, maxLength=50")
-    @Column(name = "first_name")
+    @Column(name = "first_name", nullable = false)
     private String firstName;
 
     @Validate(value = "required, minLength=3, maxLength=50")
-    @Column(name = "last_name")
+    @Column(name = "last_name", nullable = false)
     private String lastName;
 
     @Validate(value = "required, email")
-    @Column(name = "email", unique = true)
+    @Column(name = "email", unique = true, nullable = false)
     private String email;
 
     @Validate(value = "required")
-    @Column(name = "dob")
+    @Column(name = "dob", nullable = false)
     private Date dob;
 
     @Validate(value = "required")
     @Convert(converter = UserTypeConverter.class)
-    @Column(name = "user_type")
+    @Column(name = "user_type", columnDefinition = "int(1) default 2", nullable = false)
     private UserType userType;
 
     @Validate(value = "required")
     @Convert(converter = UserStatusConverter.class)
-    @Column(name = "status")
+    @Column(name = "status", columnDefinition = "int(1) default 1", nullable = false)
     private UserStatus status;
 
     @Validate(value = "required")
-    @Column(name = "gender")
+    @Column(name = "gender", nullable = false)
     @Enumerated(value = EnumType.STRING)
     private Gender gender;
 
     @Convert(converter = UserAvatarConverter.class)
-    @Column(name = "avatar")
+    @Column(name = "avatar", nullable = false)
     private File avatar;
 
     @Validate(value = "required, minLength=4")
     @DataType("password")
-    @Column(name = "password")
+    @Column(name = "password", nullable = false)
     private String password;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private Set<Health> healths;
 
     @Inject
     public User() {
@@ -82,6 +87,13 @@ public class User {
         this.password = password;
     }
 
+    public Set<Health> getHealths() {
+        return healths;
+    }
+
+    public void setHealths(Set<Health> healths) {
+        this.healths = healths;
+    }
 
     public Long getId() {
         return id;

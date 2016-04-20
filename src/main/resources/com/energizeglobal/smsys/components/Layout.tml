@@ -2,7 +2,18 @@
 <head>
     <title>SmSys</title>
 </head>
-<body>
+<body ng-app="SMSys">
     <t:body/>
+
+    <!--<script src="webjars/angularjs/1.4.0/angular.js"/>-->
+    <script src="webjars/jquery/2.1.4/jquery.js"/>
+
+    <script>
+        var SMSys = SMSys || {};
+    </script>
+
+    <script src="js/app.js"/>
+    <script src="js/config/namespace.js"/>
+    <script src="js/controllers/home.js"/>
 </body>
 </html>

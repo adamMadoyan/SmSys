@@ -41,12 +41,9 @@ public class Registration extends BaseAction {
     @CommitAfter
     Object onSuccess() {
         try {
-            user.setAvatar(new File(messages.get("application.image.path") + "default.jpg"));
+            user.setAvatar(new File(messages.get("application.image.path") + "default_picture.jpg"));
             user.setStatus(INACTIVE);
             user.setUserType(USER);
-            if (true) {
-                return this;
-            }
             userManager.add(user);
             return Home.class;
         } catch (DatabaseException e) {

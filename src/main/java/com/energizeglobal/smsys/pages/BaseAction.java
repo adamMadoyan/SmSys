@@ -8,6 +8,7 @@ import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.services.Request;
 
 import javax.inject.Inject;
+import java.util.List;
 
 /**
  * Description for class.
@@ -28,6 +29,10 @@ public class BaseAction {
 
     @Inject
     protected IUserManager userManager;
+
+    @Property
+    @SessionState(create = false)
+    protected List<User> users;
 
 //    protected void putUserIntoSession(User user) {
 //        request.getSession(true).setAttribute(CURRENT_USER, user);

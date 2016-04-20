@@ -4,6 +4,7 @@ import com.energizeglobal.smsys.entities.User;
 import com.energizeglobal.smsys.exception.DatabaseException;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.List;
 
 /**
  * Description for class.
@@ -20,5 +21,6 @@ public interface IUserManager {
 
     User findByEmailAndPassword(String email, String password) throws EntityNotFoundException, DatabaseException;
 
+    public List<User> getAllUser();
 
 }

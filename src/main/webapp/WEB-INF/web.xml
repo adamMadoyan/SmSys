@@ -52,4 +52,16 @@
         <param-value>classpath*:hibernate.cfg.xml</param-value>
     </context-param>
 
+
+
+    <servlet>
+        <servlet-name>chart</servlet-name>
+        <servlet-class>com.energizeglobal.smsys.action.ChartAction</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>chart</servlet-name>
+        <url-pattern>/dwr/chart</url-pattern>
+    </servlet-mapping>
+
+
 </web-app>

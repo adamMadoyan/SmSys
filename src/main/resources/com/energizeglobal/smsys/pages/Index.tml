@@ -1,15 +1,2 @@
 <html t:type="layout" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd">
-<h1>${hello}</h1>
-
-<ul>
-    <t:loop source="1..5 " value="var:myVar">
-        <li>${var:myVar}</li>
-    </t:loop>
-
-</ul>
-
-${count}
-
-<a t:type="actionlink" t:id="test">Test</a>
-
 </html>
