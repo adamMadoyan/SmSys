@@ -117,10 +117,8 @@ public class AppModule {
 
     public static void contributeIgnoredPathsFilter(Configuration<String> configuration)
     {
-//        configuration.add("/dwr/.*");
-//        configuration.add("/dwr/*");
-//        configuration.add("dwr/*");
-//        configuration.add("dwr*");
+        configuration.add("/dwr/.*");
+        configuration.add("/dwr/*");
     }
 
 }

@@ -2,6 +2,11 @@ package com.energizeglobal.smsys.action;
 
 import com.energizeglobal.smsys.entities.Health;
 import com.energizeglobal.smsys.entities.User;
+import com.energizeglobal.smsys.exception.DatabaseException;
+import com.energizeglobal.smsys.manager.IUserManager;
+import com.energizeglobal.smsys.manager.impl.UserManager;
+import com.google.gson.Gson;
+import org.apache.tapestry5.ioc.annotations.Inject;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -19,16 +24,21 @@ import java.util.Set;
  */
 
 public class ChartAction extends HttpServlet {
-    
+
+    private Gson gson = new Gson();
+
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("sso:com.energizeglobal.smsys.entities.User");
         Set<Health> healths = user.getHealths();
         Writer writer = response.getWriter();
+
         for (Health health : healths) {
-            writer.write(health.getValue());
+            health.setUser(null);
         }
+
+        writer.write(gson.toJson(healths));
         writer.flush();
         writer.close();
     }

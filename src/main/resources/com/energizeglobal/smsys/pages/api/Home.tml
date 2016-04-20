@@ -63,21 +63,8 @@
         </div>
     </t:if>
 
-    <div class="eg">
-        <a t:type="eventlink" t:event="showThings" t:zone="thingsZone" href="#">Show things, with a delay...</a><br/><br/>
-
-        <t:zone t:id="thingsZone" id="thingsZone" style="width: 140px; min-height: 80px;">
-            <div t:type="Loop" t:source="things" t:value="thing">
-                ${thing}
-            </div>
-        </t:zone>
-
-    </div>
-
-    <!--<t:chartComponent t:id="chartComponent" />-->
-
     <div style="width:500px; height: 400px">
-        <canvas id="line" class="chart chart-line" chart-data="data" chart-labels="labels"
+        <canvas id="bar" class="chart chart-bar" chart-data="data" chart-labels="labels"
                 chart-legend="true" chart-series="series" chart-click="onClick"></canvas>
     </div>
 

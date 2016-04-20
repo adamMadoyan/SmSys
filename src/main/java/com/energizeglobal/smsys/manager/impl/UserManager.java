@@ -5,6 +5,7 @@ import com.energizeglobal.smsys.entities.User;
 import com.energizeglobal.smsys.exception.DatabaseException;
 import com.energizeglobal.smsys.manager.IUserManager;
 import com.energizeglobal.smsys.repository.IUserRepository;
+import com.energizeglobal.smsys.repository.impl.UserRepository;
 import org.hibernate.HibernateException;
 
 import javax.inject.Inject;
