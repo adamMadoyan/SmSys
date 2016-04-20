@@ -8,18 +8,5 @@
     </div>
 </div>
 
-sdfsdf
-<table cellpadding="8" valign="middle">
-    sdfsdf
-    <tr>
-        <td>
-            <a href="http://jakarta.apache.org/tapestry/">
-                <img jwcid="@Image" image="asset:imageAsset" alt="View Tapestry Home"/>
-            </a>
-        </td>
-    </tr>
-</table>
-
-<asset name="imageAsset" path="/home/adamm/Desktop/tapestry/SMSys/data/1/36download.jpg"/>
 
 </html>

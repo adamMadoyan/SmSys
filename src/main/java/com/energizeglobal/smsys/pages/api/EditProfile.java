@@ -28,7 +28,7 @@ public class EditProfile extends BaseAction {
 
     public Object onSuccess() {
 
-        String dir = "/home/adamm/Desktop/tapestry/SMSys/data/" + user.getId();
+        String dir = messages.get("application.image.path")  + user.getId();
 
         try {
             int value = rand.nextInt(900) + 100;

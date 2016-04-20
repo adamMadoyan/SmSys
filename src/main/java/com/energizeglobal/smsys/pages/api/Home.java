@@ -2,13 +2,18 @@ package com.energizeglobal.smsys.pages.api;
 
 import com.energizeglobal.smsys.pages.BaseAction;
 import com.energizeglobal.smsys.pages.Login;
-import org.apache.commons.io.FileUtils;
+import org.apache.tapestry5.ComponentResources;
+import org.apache.tapestry5.Link;
+import org.apache.tapestry5.StreamResponse;
 import org.apache.tapestry5.annotations.OnEvent;
-import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.ioc.Messages;
+import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.services.Session;
-import org.apache.tapestry5.upload.services.UploadedFile;
 
-import java.io.*;
+import javax.xml.ws.Response;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 
 /**
  * Description for class.
@@ -17,20 +22,40 @@ import java.io.*;
  */
 public class Home extends BaseAction {
 
+    @Inject
+    private ComponentResources resources;
 
-    public byte [] getTest() {
-        try {
-            byte [] res = FileUtils.readFileToByteArray(new File("/home/adamm/Music6download.jpg"));
-            System.out.println(res.length);
-            return res;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
+    public StreamResponse onExternalImage() {
+        return new StreamResponse() {
+            public String getContentType() {
+                return "image/jpeg";
+            }
+
+            public InputStream getStream() {
+                try {
+                    return new FileInputStream(user.getAvatar());
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+
+            @Override
+            public void prepareResponse(org.apache.tapestry5.services.Response response) {
+
+            }
+
+            public void prepareResponse(Response response) {
+            }
+        };
+    }
+
+    public Link getExternalImageLink() {
+        return resources.createEventLink("externalImage");
     }
 
     void onActivate() {
-
+        System.out.println(messages.get("application.image.path"));
     }
 
     @OnEvent
