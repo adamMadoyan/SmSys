@@ -13,6 +13,7 @@ import org.apache.tapestry5.ioc.annotations.Inject;
 
 import javax.persistence.*;
 import java.io.File;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
@@ -24,7 +25,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "user")
-public class User {
+public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -34,20 +34,19 @@ public class UserRepository implements IUserRepository {
 
     @Override
     public User findById(Long id) {
-        return null;
+        return (User) session.get(User.class, id);
     }
 
     @Override
     public User findByEmailAndPassword(String email, String password) {
 //        Query query = session.createSQLQuery("SELECT u.* FROM user u WHERE u.email = :email AND u.password = :password");
+//        query.setParameter("email", email);
+//        query.setParameter("password", password);
         Criteria criteria = session.createCriteria(User.class);
         criteria.add(Restrictions.eq("email", email))
                 .add(Restrictions.eq("password", password));
-//        query.setParameter("email", email);
-//        query.setParameter("password", password);
 
-
-        List<Object> d = criteria.list();
+        List d = criteria.list();
 
         if (d.size() > 0) {
             return (User) d.get(0);
@@ -63,10 +62,6 @@ public class UserRepository implements IUserRepository {
             list = query.list();
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            if(session!=null){
-                session.close();
-            }
         }
         return list;
     }

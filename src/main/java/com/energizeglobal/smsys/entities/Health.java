@@ -4,6 +4,7 @@ import com.energizeglobal.smsys.entities.lcp.IllnessType;
 import org.apache.tapestry5.beaneditor.NonVisual;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -13,7 +14,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "health")
-public class Health {
+public class Health implements Serializable {
 
     @Id
     @NonVisual

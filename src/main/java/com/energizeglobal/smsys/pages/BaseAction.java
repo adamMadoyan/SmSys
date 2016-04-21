@@ -20,7 +20,7 @@ public class BaseAction {
     @Inject
     protected Request request;
 
-    @org.apache.tapestry5.ioc.annotations.Inject
+    @Inject
     protected Messages messages;
 
     @Property

@@ -1,13 +1,14 @@
 package com.energizeglobal.smsys.pages.api;
 
 import com.energizeglobal.smsys.entities.User;
+import com.energizeglobal.smsys.exception.DatabaseException;
 import com.energizeglobal.smsys.pages.BaseAction;
 import com.energizeglobal.smsys.pages.Login;
 import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.Link;
 import org.apache.tapestry5.StreamResponse;
-import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.services.Session;
 
@@ -16,7 +17,10 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
+import static com.energizeglobal.smsys.entities.lcp.UserStatus.ACTIVE;
+import static com.energizeglobal.smsys.entities.lcp.UserStatus.INACTIVE;
 import static com.energizeglobal.smsys.entities.lcp.UserType.ADMIN;
+import static com.energizeglobal.smsys.entities.lcp.UserType.USER;
 
 /**
  * Description for class.
@@ -38,7 +42,7 @@ public class Home extends BaseAction {
         isAdmin = user.getUserType().equals(ADMIN);
     }
 
-    public StreamResponse onExternalImage() {
+    public StreamResponse onExternalImage(final long userId) {
         return new StreamResponse() {
             public String getContentType() {
                 return "image/jpeg";
@@ -46,7 +50,13 @@ public class Home extends BaseAction {
 
             public InputStream getStream() {
                 try {
-                    return new FileInputStream(user.getAvatar());
+                    User currentUser = null;
+                    try {
+                         currentUser = userManager.findById(userId);
+                    } catch (DatabaseException e) {
+                        e.printStackTrace();
+                    }
+                    return new FileInputStream(currentUser == null ? null : currentUser.getAvatar());
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -63,8 +73,8 @@ public class Home extends BaseAction {
         };
     }
 
-    public Link getExternalImageLink() {
-        return resources.createEventLink("externalImage");
+    public Link getExternalImageLink(long userId) {
+        return resources.createEventLink("externalImage", userId);
     }
 
     void onActivate() {
@@ -74,8 +84,25 @@ public class Home extends BaseAction {
         System.out.println(messages.get("application.image.path"));
     }
 
-    @OnEvent
-    public Object onActionInvalidate() {
+    @CommitAfter
+    public Object onActionFromStatus(int index) {
+
+        User currentUser = users.get(index);
+
+        if (currentUser.getStatus().equals(ACTIVE)) {
+            currentUser.setStatus(INACTIVE);
+        } else {
+            currentUser.setStatus(ACTIVE);
+        }
+        try {
+            userManager.edit(currentUser);
+        } catch (DatabaseException e) {
+            e.printStackTrace();
+        }
+        return this;
+    }
+
+    public Object onActionFromInvalidate() {
 
         Session session = request.getSession(true);
         if (session != null) {
@@ -83,6 +110,19 @@ public class Home extends BaseAction {
         }
 
         return Login.class;
+    }
+
+    public int getIndex() {
+        for (int i = 0; i < users.size(); i++) {
+            if (users.get(i).equals(item)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public boolean getActive() {
+        return item.getStatus().equals(ACTIVE);
     }
 
 }

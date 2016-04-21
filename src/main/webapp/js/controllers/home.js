@@ -13,9 +13,9 @@ SMSys.app.controllers.controller("homeCtrl", ['$scope', '$timeout', '$http', fun
     $scope.getData = function (callbackFunc) {
         $http({
             method: 'GET',
-            url: '/smsys/dwr/chart',
-            params: 'limit=10',
-            headers: {'Authorization': 'Token token=xxxxYYYYZzzz'}
+            url: '/smsys/dwr/chart'
+            //params: 'limit=10',
+            //headers: {'Authorization': 'Token token=xxxxYYYYZzzz'}
         }).success(function (data) {
             // With the data succesfully returned, call our callback
             callbackFunc(data);
@@ -32,7 +32,6 @@ SMSys.app.controllers.controller("homeCtrl", ['$scope', '$timeout', '$http', fun
                 $scope.data.push([]);
             }
             index = $scope.series.indexOf(value.type);
-            console.info('index', index);
             $scope.data[index].push(value.value);
         });
     });
