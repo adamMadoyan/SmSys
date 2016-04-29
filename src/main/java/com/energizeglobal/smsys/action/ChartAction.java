@@ -30,7 +30,7 @@ public class ChartAction extends HttpServlet {
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("sso:com.energizeglobal.smsys.entities.User");
+        User user = (User) session.getAttribute("sso:" + User.class.getName());
         Set<Health> healths = user.getHealths();
         Writer writer = response.getWriter();
 
